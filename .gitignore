@@ -1,0 +1,4 @@
+.env
+.astronomy/
+__pycache/
+db.sqlite3
