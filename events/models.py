@@ -6,6 +6,7 @@ from users.models import CustomUser
 
 class Event(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    type = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     description = models.TextField()
     image = CloudinaryField('event_image',default='default_for_cover_r4fftg', blank=True, null=True)

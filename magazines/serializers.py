@@ -31,11 +31,15 @@ class ReviewSerializer(serializers.ModelSerializer):
 class ArticleSerializer(serializers.ModelSerializer):
     author = serializers.SerializerMethodField('get_author')
     avg_rating = serializers.SerializerMethodField()
+    magazine = serializers.SerializerMethodField()
     # reviews = ReviewSerializer(many=True, read_only=True)
     class Meta:
         model = Article
-        fields = ['id','title','sub_title','cover_img','discription','summary','created_at','updated_at','author','avg_rating']
-        read_only_fields = ['id','created_at','updated_at','author','reviews','avg_rating']
+        fields = ['id','title','sub_title','cover_img','discription','summary','created_at','updated_at','author','avg_rating','heading_01','paragraph_01','heading_02','paragraph_02','heading_03','paragraph_03','quotes','quoter',"read_time",'magazine']
+        read_only_fields = ['id','created_at','updated_at','author','reviews','avg_rating','magazine']
+
+    def get_magazine(self,obj):
+        return obj.magazine.title
 
     def get_author(self,obj):
         return ShortInfoUserSerializer(obj.author).data
@@ -49,7 +53,7 @@ class MagazineSerializer(serializers.ModelSerializer):
     # articles = ArticleSerializer(many= True, read_only =True)
     class Meta:
         model = Magazine
-        fields = ['id','title','sub_title','cover_img','discription','outcomes','summary','created_at','updated_at','user']
+        fields = ['id','title','sub_title','cover_img','discription','outcomes','summary','created_at','updated_at','user','read_time']
         read_only_fields = ['id','created_at','updated_at','articles','user']
 
 

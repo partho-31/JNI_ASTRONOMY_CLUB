@@ -17,11 +17,13 @@ class Magazine(models.Model):
     summary = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    read_time = models.CharField(max_length= 100,)
 
     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE, related_name= 'magazines')
 
     def __str__(self):
         return self.title
+
 
 
 class Article(models.Model):
@@ -31,16 +33,28 @@ class Article(models.Model):
     cover_img = CloudinaryField('image',default='default_for_cover_r4fftg',blank=True,null=True)
     discription = models.TextField()
 
+    heading_01 = models.CharField(max_length= 200, blank=True, null=True)
+    paragraph_01 = models.TextField(blank=True, null=True)
+    heading_02 = models.CharField(max_length= 200, blank=True, null=True)
+    paragraph_02 = models.TextField(blank=True, null=True)
+    heading_03 = models.CharField(max_length= 200, blank=True, null=True)
+    paragraph_03 = models.TextField(blank=True, null=True)
+
+    quoter = models.CharField(max_length= 200, blank=True, null=True)
+    quotes = models.TextField(blank=True, null=True)
+
     summary = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    read_time = models.CharField(max_length= 100)
 
     author = models.ForeignKey(CustomUser,on_delete=models.CASCADE, related_name= 'articles')
     magazine = models.ForeignKey(Magazine,on_delete=models.CASCADE, related_name='articles')
 
     def __str__(self):
         return self.title
-    
+
+
 
 class Review(models.Model):
     rating = models.PositiveIntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])

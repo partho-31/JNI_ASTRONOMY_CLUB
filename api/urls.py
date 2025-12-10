@@ -11,11 +11,12 @@ from users.views import ClubMembersViewSet
 router = SimpleRouter()
 router.register('magazines',MagazineViewSet,basename= 'magazine')
 router.register('events', EventViewSet, basename='event')
+router.register('articles', ArticleViewSet, basename='article')
 
 article_router = NestedSimpleRouter(router,'magazines',lookup = 'magazine')
 article_router.register('articles',ArticleViewSet,basename='magazine-article')
 
-review_router = NestedSimpleRouter(article_router,'articles',lookup ='article')
+review_router = NestedSimpleRouter(router,'articles',lookup ='article')
 review_router.register('reviews',ReviewViewSet,basename='article-review')
 
 
