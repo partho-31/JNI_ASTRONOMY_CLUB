@@ -25,20 +25,20 @@ class ReviewSerializer(serializers.ModelSerializer):
             'first_name': "AnonymousUser", 
             'last_name': " ", 
             'image': "image/upload/default_for_users_hpwnzn"
-            } 
+            }
 
 
 class ArticleSerializer(serializers.ModelSerializer):
     author = serializers.SerializerMethodField('get_author')
     avg_rating = serializers.SerializerMethodField()
-    magazine = serializers.SerializerMethodField()
+    magazine_title = serializers.SerializerMethodField()
     # reviews = ReviewSerializer(many=True, read_only=True)
     class Meta:
         model = Article
-        fields = ['id','title','sub_title','cover_img','discription','summary','created_at','updated_at','author','avg_rating','heading_01','paragraph_01','heading_02','paragraph_02','heading_03','paragraph_03','quotes','quoter',"read_time",'magazine']
-        read_only_fields = ['id','created_at','updated_at','author','reviews','avg_rating','magazine']
+        fields = ['id','title','sub_title','cover_img','discription','summary','created_at','updated_at','author','avg_rating','heading_01','paragraph_01','heading_02','paragraph_02','heading_03','paragraph_03','quotes','quoter',"read_time",'magazine','magazine_title']
+        read_only_fields = ['id','created_at','updated_at','author','reviews','avg_rating','magazine_title']
 
-    def get_magazine(self,obj):
+    def get_magazine_title(self,obj):
         return obj.magazine.title
 
     def get_author(self,obj):
@@ -57,3 +57,4 @@ class MagazineSerializer(serializers.ModelSerializer):
         read_only_fields = ['id','created_at','updated_at','articles','user']
 
 
+ 

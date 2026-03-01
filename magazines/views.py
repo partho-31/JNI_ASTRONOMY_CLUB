@@ -22,8 +22,7 @@ class ArticleViewSet(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
-        magazine = Magazine.objects.get(id = self.kwargs.get('magazine_pk'))
-        serializer.save(author = self.request.user,magazine = magazine)
+        serializer.save(author = self.request.user)
 
 
 
