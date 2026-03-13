@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'magazines',
     'users',
     'api',
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'jniac_just.urls'
@@ -152,7 +154,7 @@ DJOSER = {
         'current_user': 'users.serializers.CustomUserSerializer',
     },
     'PERMISSIONS': {
-        
+        'user_delete': ['djoser.permissions.CurrentUserOrAdmin'],
     }
 }
 
@@ -203,4 +205,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     'http://localhost:5173',
     
+]
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
 ]

@@ -3,7 +3,7 @@ from rest_framework.routers import SimpleRouter
 from rest_framework_nested.routers import NestedSimpleRouter
 from magazines.views import MagazineViewSet,ArticleViewSet,ReviewViewSet
 from events.views import EventViewSet
-from users.views import ClubMembersViewSet
+from users.views import ClubMembersViewSet,DeleteClubMemberViewSet
 
 
 
@@ -24,5 +24,6 @@ urlpatterns = [
     path('',include(router.urls)),
     path('',include(article_router.urls)),
     path('',include(review_router.urls)),
-    path('members/',ClubMembersViewSet.as_view(), name= 'club-members')
+    path('members/',ClubMembersViewSet.as_view(), name= 'club-members'),
+    path('members/<int:pk>/',DeleteClubMemberViewSet.as_view(), name= "delete-member"),
 ]

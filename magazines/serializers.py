@@ -8,7 +8,7 @@ from magazines.models import *
 class ShortInfoUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['first_name', 'last_name', 'image']
+        fields = ['first_name', 'last_name', 'image', 'role']
 
 
 class ReviewSerializer(serializers.ModelSerializer):

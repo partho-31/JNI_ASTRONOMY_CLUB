@@ -8,7 +8,7 @@ from magazines.models import *
 
 class MagazineViewSet(ModelViewSet):
     serializer_class = MagazineSerializer
-    queryset = Magazine.objects.prefetch_related('articles').all()
+    queryset = Magazine.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
@@ -18,7 +18,7 @@ class MagazineViewSet(ModelViewSet):
 
 class ArticleViewSet(ModelViewSet):
     serializer_class = ArticleSerializer
-    queryset = Article.objects.prefetch_related('reviews').all()
+    queryset = Article.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
@@ -28,7 +28,7 @@ class ArticleViewSet(ModelViewSet):
 
 class ReviewViewSet(ModelViewSet):
     serializer_class = ReviewSerializer
-    queryset = Review.objects.select_related('user').all()
+    queryset = Review.objects.all()
     permission_classes = [CustomReviewPermission]
 
     def perform_create(self, serializer):
