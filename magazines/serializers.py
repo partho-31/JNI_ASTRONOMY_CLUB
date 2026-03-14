@@ -35,7 +35,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     # reviews = ReviewSerializer(many=True, read_only=True)
     class Meta:
         model = Article
-        fields = ['id','title','sub_title','cover_img','discription','summary','created_at','updated_at','author','avg_rating','heading_01','paragraph_01','heading_02','paragraph_02','heading_03','paragraph_03','quotes','quoter',"read_time",'magazine','magazine_title']
+        fields = ['id','title','sub_title','cover_img','discription','summary','created_at','updated_at','author','avg_rating','heading_01','paragraph_01','heading_02','paragraph_02','heading_03','paragraph_03','quotes','quoter',"read_time",'magazine','magazine_title','status']
         read_only_fields = ['id','created_at','updated_at','author','reviews','avg_rating','magazine_title']
 
     def get_magazine_title(self,obj):
@@ -53,7 +53,7 @@ class MagazineSerializer(serializers.ModelSerializer):
     # articles = ArticleSerializer(many= True, read_only =True)
     class Meta:
         model = Magazine
-        fields = ['id','title','sub_title','cover_img','discription','outcomes','summary','created_at','updated_at','user','read_time']
+        fields = ['id','title','sub_title','cover_img','discription','outcomes','summary','created_at','updated_at','user','read_time','status']
         read_only_fields = ['id','created_at','updated_at','articles','user']
 
 

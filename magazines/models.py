@@ -17,7 +17,9 @@ class Magazine(models.Model):
     summary = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    read_time = models.CharField(max_length= 100,)
+    read_time = models.CharField(max_length= 100)
+    status = models.CharField(max_length=10, default= "Pending")
+
 
     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE, related_name= 'magazines')
 
@@ -55,6 +57,8 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     read_time = models.CharField(max_length= 100)
+    status = models.CharField(max_length=10, default= "Pending")
+
 
     author = models.ForeignKey(CustomUser,on_delete=models.CASCADE, related_name= 'articles')
     magazine = models.ForeignKey(Magazine,on_delete=models.CASCADE, related_name='articles')
