@@ -39,6 +39,19 @@ INSTALLED_APPS = [
     'users',
     'api',
     # "debug_toolbar",
+
+    'django.contrib.sites',
+
+    'rest_framework.authtoken',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+
 ]
 
 MIDDLEWARE = [
@@ -52,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'jniac_just.urls'
@@ -212,3 +226,35 @@ CORS_ALLOWED_ORIGINS = [
 #     "127.0.0.1",
 #     # ...
 # ]
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": { 
+        "APP": { 
+            "client_id": config('Client_ID'),
+            "secret": config('Client_Secret'),
+            "key": ""
+        },
+        "SCOPE": [
+            "profile",
+            "email"
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online"
+        }
+    }
+}
+
+REST_USE_JWT = True
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
